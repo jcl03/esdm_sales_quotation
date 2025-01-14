@@ -16,5 +16,12 @@ module.exports = cds.service.impl(async function () {
 
         // Automatically assign the first employee's ID to createdBy
         req.data.createdBy = firstEmployee.employeeID;
+
+        const { Quotations } = this.entities;
+        const count = await cds.run(SELECT.count('ID').from(Quotations));
+        req.data.ID = `Q${count + 1}`.padStart(4, '0');
+
+        
     });
+
 });
