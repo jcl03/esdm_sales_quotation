@@ -1,3 +1,4 @@
+using SalesManagementService as service from '../../srv/sales';
 annotate service.Quotations with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
@@ -68,16 +69,6 @@ annotate service.Quotations with @(
 );
 
 annotate service.Quotations with {
-    quotationID @Common.ValueHelp : {
-        $Type : 'Common.ValueHelpType',
-        ValueHelpDefinition : {
-            $Type : 'Common.ValueHelpDefinitionType',
-            DataSource : {
-                $Type : 'Common.ValueHelpDataSourceType',
-                Type : 'UUID', // or 'Sequence'
-            },
-        },
-    },
     product @Common.ValueList : {
         $Type : 'Common.ValueListType',
         CollectionPath : 'Products',
@@ -104,7 +95,10 @@ annotate service.Quotations with {
                 ValueListProperty : 'stockLevel',
             },
         ],
-    },
+    }
+};
+
+annotate service.Quotations with {
     createdBy @Common.ValueList : {
         $Type : 'Common.ValueListType',
         CollectionPath : 'Employees',
@@ -133,3 +127,4 @@ annotate service.Quotations with {
         ],
     }
 };
+
